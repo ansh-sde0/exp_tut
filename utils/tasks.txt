@@ -1,0 +1,7 @@
+mysql
+mysql workbench
+sequelize
+mysql2
+bcrypt
+uuidv4
+use mysql db
