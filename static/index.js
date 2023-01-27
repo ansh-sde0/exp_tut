@@ -50,8 +50,6 @@ add_user_btn.addEventListener('click',async function(){
             email:email
         }
 
-        console.log(JSON.stringify(data))
-
         let response = await fetch("http://localhost:5000/user/create",{
             method:'POST',
             headers:{'Content-Type':'application/json'},
