@@ -23,7 +23,7 @@ get_users_btn.addEventListener('click',async function(){
             let user_space = document.createElement('div')
             user_space.classList.add('button-container')
         
-            user_space.innerHTML = user.name
+            user_space.innerHTML = user.name + " " + user.email
             display_container.appendChild(user_space);
 
             })
@@ -50,6 +50,11 @@ add_user_btn.addEventListener('click',async function(){
     email_input.setAttribute('placeholder','Enter email');
     document.body.appendChild(email_input);
 
+    let password_input = document.createElement('input');
+    password_input.setAttribute('type','password');
+    password_input.setAttribute('placeholder','Enter password');
+    document.body.appendChild(password_input);
+
     let create_user_btn = document.createElement('button');
     create_user_btn.classList.add('button_small')
     create_user_btn.innerHTML = 'Create User';
@@ -59,10 +64,12 @@ add_user_btn.addEventListener('click',async function(){
     create_user_btn.addEventListener('click', async function(){
         let name = name_input.value;
         let email = email_input.value;
+        let password = password_input.value
 
         let data = {
             name:name,
-            email:email
+            email:email,
+            password: password
         }
 
         let response = await fetch("http://localhost:5000/user/create",{
