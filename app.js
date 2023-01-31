@@ -4,14 +4,9 @@ const path = require('path')
 const bodyParser = require('body-parser')
 
 const hp = require('./utils/helper.js')
-const { kebabCase, includes, keys } = require('lodash')
-
 const routes = require('./users/routes.js')
 
-
 app = Express()
-
-// Middlewares
 
 app.use(Express.static('./static'))
 app.use(bodyParser.json())

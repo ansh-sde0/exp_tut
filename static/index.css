@@ -150,6 +150,60 @@ main {
   display: grid;
   place-items: center;
 }
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap:wrap;
+}
+
+.button {
+  background-color: hsl(80, 13%, 9%);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
+.button:hover {
+  background-color: #104912;
+}
+
+
+.button_small {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button_small:hover {
+  background-color: #3e8e41;
+}
+
+
+input[type="text"] {
+  width: 200px; /* adjust as needed */
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
 
 /*
 =============== 

@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>App Radiant</title>
 </head>
 <body>
@@ -22,6 +25,10 @@
               <a href="index.html">home</a>
             </li>
             <li>
+              <a href="./login.html">Login</a>
+            </li>
+
+            <!-- <li>
               <a href="about.html">about</a>
             </li>
             <li>
@@ -29,41 +36,37 @@
             </li>
             <li>
               <a href="contact.html">contact</a>
-            </li>
+            </li> -->
           </ul>
           <!-- social media -->
           <ul class="social-icons">
             <li>
-              <a href="https://www.twitter.com">
-                <i class="fab fa-facebook"></i>
+              <a href="">
+                <i class="fa fa-facebook"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.twitter.com">
-                <i class="fab fa-twitter"></i>
+              <a href="">
+                <i class="fa fa-twitter"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.twitter.com">
-                <i class="fab fa-behance"></i>
+              <a href="">
+                <i class="fa fa-linkedin"></i>
               </a>
             </li>
-            <li>
-              <a href="https://www.twitter.com">
-                <i class="fab fa-linkedin"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.twitter.com">
-                <i class="fab fa-sketch"></i>
-              </a>
-            </li>
+
           </ul>
         </div>
       </nav>
 
-    <button id="get_users"> Get me all users </button>
-    <button id="add_user"> Add User</button>
+      <div class="button-container" style="display: flex; justify-content: center; align-items: center;">
+        
+        <button class = "button" id="get_users"> Get me all users </button>
+        <button class = "button" id="add_user"> Add User</button>
+        <button class = "button" id="update_user"> Update User</button>
+
+      </div>
 
     <h4 id="display-users"></h4>
 
