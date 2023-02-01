@@ -4,8 +4,7 @@ const { default: isAlpha } = require('validator/lib/isAlpha.js')
 const { default: isEmail } = require('validator/lib/isEmail.js')
 const bcrypt = require('bcrypt')
 const gen_uuid = require('uuid').v4
-
-
+const async = require('async');
 const mysql_db = require('../database/mysql_db.js')
 const { cons } = require('lodash-contrib')
 
@@ -85,8 +84,80 @@ const validcrediantials = async (name,email)=>{
     }
     return rep
 }
-const adduser = async (req,res)=>{
 
+// adduser(async.auto)
+const adduser2 = async (req,res)=>{
+    
+    try{
+
+        let results = await async.autoInject({
+
+            check_crediantials: async()=>{
+
+                let body = req.body
+                let vc = await validcrediantials(body.name,body.email)
+
+                if (!vc.state){
+                    throw new Error (vc.msg)
+                }
+                return
+            },
+
+            check_empty_password: async () => {
+
+                let body = req.body
+                
+                if (!body.password.length) {
+                    throw new Error ("Password can't be empty")
+                }
+                return
+                },
+
+            email_indb:async (check_crediantials)=>{
+
+                let body = req.body
+
+                if (await emailexists(body.email)){
+                    throw new Error ('A User already exists with this Email address')
+
+                }
+                return
+            },
+
+            hash_password_token:async (check_empty_password,email_indb)=>{
+                
+                let body = req.body
+
+                let hashed_password = await bcrypt.hash(body.password,10)
+                let user_token = gen_uuid()
+                
+                return {'hashed_password':hashed_password,'user_token':user_token}
+            },
+
+            insert_data: async (hash_password_token)=>{
+
+                let body = req.body
+                let hashed_password = hash_password_token['hashed_password']
+                let user_token = hash_password_token['user_token']
+
+                const dataa = await mysql_db.query('insert into users (name,email,password,guid) values (?,?,?,?)',{
+                    replacements:[body.name,body.email,hashed_password,user_token],
+                    type: QueryTypes.INSERT})
+                
+                return dataa
+            }
+        })
+
+        res.status(200).send('User added')
+
+    }
+    catch (err) { 
+        res.status(400).send(err.toString())
+    }
+}
+
+const adduser = async (req,res)=>{
+    
     let body = req.body
     let vc = await validcrediantials(body.name,body.email)
 
@@ -125,7 +196,7 @@ const userindb = async (body)=>{
 
 const updateuser = async (req,res)=>{
 
-    let user_exists = req.body
+    let user_exists = req.user
 
     let Q = `UPDATE users set `
     let setFields = []
@@ -175,7 +246,7 @@ module.exports = {
     gethomepage,
     getusers,
     getuser,
-    adduser,
+    adduser2,
     updateuser,
     resourceerror,loginuser
 }
