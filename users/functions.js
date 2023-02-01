@@ -100,7 +100,6 @@ const adduser2 = async (req,res)=>{
                 if (!vc.state){
                     throw new Error (vc.msg)
                 }
-                return
             },
 
             check_empty_password: async () => {
@@ -110,8 +109,8 @@ const adduser2 = async (req,res)=>{
                 if (!body.password.length) {
                     throw new Error ("Password can't be empty")
                 }
-                return
-                },
+                
+            },
 
             email_indb:async (check_crediantials)=>{
 
@@ -121,7 +120,6 @@ const adduser2 = async (req,res)=>{
                     throw new Error ('A User already exists with this Email address')
 
                 }
-                return
             },
 
             hash_password_token:async (check_empty_password,email_indb)=>{
@@ -144,7 +142,6 @@ const adduser2 = async (req,res)=>{
                     replacements:[body.name,body.email,hashed_password,user_token],
                     type: QueryTypes.INSERT})
                 
-                return dataa
             }
         })
 
