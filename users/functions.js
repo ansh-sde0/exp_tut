@@ -112,7 +112,7 @@ const adduser2 = async (req,res)=>{
                 
             },
 
-            email_indb:async (check_crediantials)=>{
+            email_indb: async (check_crediantials)=>{
 
                 let body = req.body
 
